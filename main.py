@@ -1,8 +1,8 @@
 from application import (
     add_cat_instance, identify_cat_breed, generate_description, 
-    compare_breeds, detect_errors, attribute_distribution,
-    transform_attributes, find_correlations, propose_new_data
+    compare_breeds, detect_errors, transform_attributes, find_correlations, propose_new_data
 )
+from database import attribute_distribution
 
 def menu():
     print("\n--- Catology System ---")
