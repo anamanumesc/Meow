@@ -1,12 +1,10 @@
 import pandas as pd
-import math  # Import the math module for the ceil function
-import random  # Import random to select verbs
+import math
+import random
 
-# Load the dataset
 file_path = 'database/cat_personality.xlsx'
 df = pd.read_excel(file_path)
 
-# Breed mapping for user-friendly display
 breed_mapping = {
     "BEN": "Bengal",
     "SBI": "Birman",
@@ -135,7 +133,7 @@ attributes_mapping = {
         5: "very often hunts mammals"
     }
 }
-# List of sentence starters (verbs) to randomly choose from
+
 sentence_starters = [
     "Your cat is", 
     "Other owners say that your cat is", 
@@ -172,7 +170,7 @@ def run():
         print(f"No data available for breed {breed_name}.")
         return
     
-    print(f"\nBreed: {breed_name}\n")  # Display breed
+    print(f"\nBreed: {breed_name}\n") 
 
     attributes = ['Calm', 'Fearful', 'Intelligent', 'Vigilant', 
                   'Persevering', 'Affectionate', 'Friendly', 
@@ -180,12 +178,10 @@ def run():
                   'Aggressive', 'Impulsive', 'Predictable', 'Distracted', 
                   'Bird', 'Mammal']
 
-    results = []  # Store the results as pairs of attribute and level
+    results = []
     for attr in attributes:
-        # Calculate the mean for the attribute
         most_likely_value = breed_data[attr].mean()
         
-        # Round up to the nearest whole number
         level = math.ceil(most_likely_value)
 
         if most_likely_value == 0:
@@ -197,7 +193,6 @@ def run():
     
     print(f"\n{breed_name} Personality Description:\n")
     for attr, level in results:
-        # Randomly pick a sentence starter
         verb = random.choice(sentence_starters)
         description = get_attribute_description(attr, level)
         print(f"{verb} {description} ({attr})")
